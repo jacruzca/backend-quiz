@@ -4,7 +4,9 @@ export default class User extends BaseModel {
     
     constructor(args) {
         super(args);
-        this.displayName = this.firstName + ' ' + this.lastName;
+        if (this.firstName && this.lastName) {
+            this.displayName = this.firstName + ' ' + this.lastName.charAt(0) + ".";
+        }
     }
     
 }

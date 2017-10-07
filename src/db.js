@@ -13,7 +13,11 @@ class Database {
     getById(modelName, id) {
         const model = require(`./models/${modelName}/model`).default
         const found = this.data[modelName].find(m => m.id === id);
-        return new model(found);
+        if (found) {
+            return new model(found);
+        }
+        
+        return new model({});
     }
     
     set(modelName, datum) {

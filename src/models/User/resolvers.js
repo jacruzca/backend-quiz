@@ -7,7 +7,9 @@ import VehiclesModel from '../Vehicle/model';
 
 export default {
     Query: {
-        users: Resolvers.Query.list(Model),
+        users(root) {
+            return Resolvers.Query.list(Model)
+        },
         user(root, { id }) {
             return Resolvers.Query.getById(Model, id);
         },
@@ -18,7 +20,10 @@ export default {
             // so, this assumption is necessary
             let vehiclePrices = [];
             Resolvers.Query.list(OrdersModel).map(order => {
-                vehiclePrices[order.vehicleId] = order.price;
+                if(typeof vehiclePrices[order.vehicleId] === 'undefined'){
+                    vehiclePrices[order.vehicleId] = 0;
+                }
+                vehiclePrices[order.vehicleId] += order.price;
             });
             
             
