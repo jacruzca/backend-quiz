@@ -10,6 +10,13 @@ class Database {
         return this.data[modelName].map(m => new model(m))
     }
     
+    getById(modelName, id) {
+        const model = require(`./models/${modelName}/model`).default
+        const found = this.data[modelName].find(m => m.id === id);
+        console.log(found);
+        return new model(found);
+    }
+    
     set(modelName, datum) {
         // You should write this method
         // and use it for inserts and updates
