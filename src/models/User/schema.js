@@ -9,9 +9,15 @@ type User {
   vehicles: [Vehicle]
 }
 
+type ProfitableUser {
+   user: User!,
+   spend: Int!
+}
+
 type Query {
   users: [User]
   user(id: Int!): User
+  profitableUsers(top: Int!): [ProfitableUser]
 }
 
 type Mutation {

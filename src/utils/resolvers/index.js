@@ -2,7 +2,7 @@ import db from '../../db'
 
 export const Resolvers = {
     Query: {
-        list: (Model) => (unusedFirstParameter, args, context) => {
+        list: (Model) => {
             return db.get(Model.name)
         },
         getById: (Model, id) => {

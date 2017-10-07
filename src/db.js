@@ -6,14 +6,13 @@ class Database {
     }
     
     get(modelName) {
-        const model = require(`./models/${modelName}/model`).default
-        return this.data[modelName].map(m => new model(m))
+        const model = require(`./models/${modelName}/model`).default;
+        return this.data[modelName].map(m => new model(m));
     }
     
     getById(modelName, id) {
         const model = require(`./models/${modelName}/model`).default
         const found = this.data[modelName].find(m => m.id === id);
-        console.log(found);
         return new model(found);
     }
     
