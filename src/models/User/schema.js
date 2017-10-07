@@ -31,4 +31,6 @@ input DeleteUserInput {
 type DeleteUserPayload {
   id: Int!
   error: String
-}`
+}
+
+`

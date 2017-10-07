@@ -23,6 +23,9 @@ class Database {
     set(modelName, datum) {
         // You should write this method
         // and use it for inserts and updates
+        const model = require(`./models/${modelName}/model`).default
+        this.data[modelName].push(datum);
+        return new model(datum);
     }
     
     delete(modelName, datum) {

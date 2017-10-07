@@ -10,6 +10,12 @@ export const Resolvers = {
         }
     },
     Mutation: {
+        create: (Model, input) => {
+            const model = require(`../../models/${Model.name}/model`).default;
+            const instance = new model(input);
+            instance.save();
+            return instance;
+        },
         delete: (Model) => (unusedFirstParameter, args) => {
             const { input, } = args
             db.delete(Model.name, input)
