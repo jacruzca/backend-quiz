@@ -23,9 +23,18 @@ class Database {
     set(modelName, datum) {
         // You should write this method
         // and use it for inserts and updates
-        const model = require(`./models/${modelName}/model`).default
-        this.data[modelName].push(datum);
-        return new model(datum);
+        const model = require(`./models/${modelName}/model`).default;
+        let indexFound = this.data[modelName].findIndex(v => v.id == datum.id);
+        if (indexFound >= 0) {//update
+            let found = this.data[modelName][indexFound];
+            this.data[modelName][indexFound] = {
+                ...found, ...datum
+            }; //perform update
+            return new model(this.data[modelName][indexFound]);
+        } else { //create
+            this.data[modelName].push(datum);
+            return new model(this.data[modelName][this.data[modelName].length - 1]);
+        }
     }
     
     delete(modelName, datum) {

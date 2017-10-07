@@ -16,6 +16,12 @@ export const Resolvers = {
             instance.save();
             return instance;
         },
+        update: (Model, input) => {
+            const model = require(`../../models/${Model.name}/model`).default;
+            const instance = new model(input);
+            instance.validate();
+            return db.set(Model.name, input);
+        },
         delete: (Model) => (unusedFirstParameter, args) => {
             const { input, } = args
             db.delete(Model.name, input)

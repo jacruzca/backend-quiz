@@ -9,7 +9,7 @@ export default class BaseModel {
 
   save() {
     if (!this.id) {
-      const numEntries = db.get(this.constructor.name).length + 1
+      const numEntries = db.get(this.constructor.name).length + 1;
       this.id = numEntries
     }
     db.set(this.constructor.name, this)

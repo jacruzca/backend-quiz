@@ -13,13 +13,16 @@ const makes = {
 
 export default class Vehicle extends BaseModel {
     
-    save() {
+    validate() {
         const thisMake = makes[this.make];
         if (!thisMake ||
             thisMake.indexOf(this.model) === -1) {
             throw new Error('Invalid make')
         }
-        
+    }
+    
+    save() {
+        this.validate();
         super.save();
     }
     
